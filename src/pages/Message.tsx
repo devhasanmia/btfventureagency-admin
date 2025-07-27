@@ -5,9 +5,10 @@ const messages = [
     name: "Hasan Mia",
     email: "hasan@example.com",
     subject: "Web3 fundraising help",
-    message: "I have a project that needs investor connections and CEX listing.",
+    message:
+      "I have a project that needs investor connections and CEX listing.",
     interest: "Fund Raising",
-    projectSocial: "https://twitter.com/hasan_mia"
+    projectSocial: "https://twitter.com/hasan_mia",
   },
   {
     name: "Rahim Uddin",
@@ -18,7 +19,7 @@ const messages = [
   },
 ];
 
-const ContactMessages = () => {
+const Messages = () => {
   return (
     <div className="p-10">
       <h1 className="flex items-center gap-4 text-4xl font-extrabold text-indigo-700 mb-12 drop-shadow-sm">
@@ -34,7 +35,9 @@ const ContactMessages = () => {
             style={{ backdropFilter: "blur(12px)" }}
           >
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-              <p className="text-2xl font-semibold text-indigo-900">{msg.name}</p>
+              <p className="text-2xl font-semibold text-indigo-900">
+                {msg.name}
+              </p>
               <a
                 href={`mailto:${msg.email}`}
                 className="text-indigo-600 hover:text-indigo-800 text-sm sm:text-base mt-2 sm:mt-0 font-medium transition-colors"
@@ -49,7 +52,9 @@ const ContactMessages = () => {
 
             <p className="mt-3 font-semibold text-indigo-700">
               I&apos;m interested in:{" "}
-              <span className="text-indigo-500 font-normal">{msg.interest || "N/A"}</span>
+              <span className="text-indigo-500 font-normal">
+                {msg.interest || "N/A"}
+              </span>
             </p>
 
             {msg.projectSocial && (
@@ -76,4 +81,4 @@ const ContactMessages = () => {
   );
 };
 
-export default ContactMessages;
+export default Messages;
