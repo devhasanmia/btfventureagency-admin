@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
+import { Link } from "react-router";
 
 const initialProjects = [
   {
@@ -19,97 +21,105 @@ const initialProjects = [
   },
 ];
 
-function formatLaunchDate(dateStr) {
+function formatLaunchDate(dateStr: string) {
   const date = new Date(dateStr);
   return date.toLocaleString("default", { month: "long", year: "numeric" });
 }
 
-const truncateText = (text, maxLength = 20) => {
+const truncateText = (text: string, maxLength = 20) => {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength) + "...";
 };
 
-const ResponsiveProjectTable = () => {
+const RecentlyWorking = () => {
   const [projects, setProjects] = useState(initialProjects);
 
-  const handleEdit = (id) => {
+  const handleEdit = (id: number) => {
     alert(`Edit project with ID: ${id}`);
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure to delete this project?")) {
+  const handleDelete = (id: number) => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
       setProjects((prev) => prev.filter((proj) => proj.id !== id));
     }
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md max-w-full overflow-x-auto">
-      <h2 className="text-2xl font-bold mb-6">Projects Table</h2>
+    <div className="p-6 w-full">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-3xl font-extrabold text-gray-900">
+          Recently Working
+        </h2>
+        <Link
+          to="/add-project"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition transform hover:scale-105"
+        >
+          <FiPlus size={20} />
+          Add Project
+        </Link>
+      </div>
 
-      <div className="min-w-[700px]">
-        <table className="w-full table-auto border-collapse text-left">
-          <thead>
-            <tr className="border-b border-gray-300">
-              <th className="py-3 px-4">Photo</th>
-              <th className="py-3 px-4">Name</th>
-              <th className="py-3 px-4">Description</th>
-              <th className="py-3 px-4">Launch Date</th>
-              <th className="py-3 px-4">Status</th>
-              <th className="py-3 px-4">Actions</th>
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-gray-100 text-gray-700 text-left">
+            <tr>
+              <th className="p-4">Photo</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">Description</th>
+              <th className="p-4">Launch</th>
+              <th className="p-4">Status</th>
+              <th className="p-4">Action</th>
             </tr>
           </thead>
           <tbody>
-            {projects.map(
-              ({ id, photo, name, description, launchDate, status }) => (
-                <tr
-                  key={id}
-                  className="border-b border-gray-200 hover:bg-gray-50"
-                >
-                  <td className="py-2 px-4">
-                    <img
-                      src={photo}
-                      alt={name}
-                      className="w-12 h-12 rounded-md object-cover"
-                    />
-                  </td>
-                  <td className="py-2 px-4 font-semibold text-gray-800">
-                    {name}
-                  </td>
-                  <td className="py-2 px-4 text-gray-600">
-                    {truncateText(description)}
-                  </td>
-                  <td className="py-2 px-4">{formatLaunchDate(launchDate)}</td>
-                  <td className="py-2 px-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        status === "live"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      {status.charAt(0).toUpperCase() + status.slice(1)}
-                    </span>
-                  </td>
-                  <td className="py-2 px-4 space-x-3">
-                    <button
-                      onClick={() => handleEdit(id)}
-                      className="text-indigo-600 hover:text-indigo-800 font-semibold"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(id)}
-                      className="text-red-600 hover:text-red-800 font-semibold"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
+            {projects.map(({ id, photo, name, description, launchDate, status }) => (
+              <tr key={id} className="border-t hover:bg-gray-50">
+                <td className="p-4">
+                  <img
+                    src={photo}
+                    alt={name}
+                    className="w-12 h-12 rounded-md object-cover"
+                  />
+                </td>
+                <td className="p-4 font-semibold">{name}</td>
+                <td className="p-4 text-sm text-gray-600">
+                  {truncateText(description)}
+                </td>
+                <td className="p-4">{formatLaunchDate(launchDate)}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      status === "live"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-yellow-100 text-yellow-800"
+                    }`}
+                  >
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </span>
+                </td>
+                <td className="p-4 flex gap-2">
+                  <button
+                    onClick={() => handleEdit(id)}
+                    className="flex items-center gap-1 px-3 py-1.5 bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-md text-sm font-medium transition"
+                  >
+                    <FiEdit />
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(id)}
+                    className="flex items-center gap-1 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"
+                  >
+                    <FiTrash2 />
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
             {projects.length === 0 && (
               <tr>
-                <td colSpan="6" className="text-center py-6 text-gray-500">
+                <td colSpan={6} className="text-center py-6 text-gray-500">
                   No projects found.
                 </td>
               </tr>
@@ -121,4 +131,4 @@ const ResponsiveProjectTable = () => {
   );
 };
 
-export default ResponsiveProjectTable;
+export default RecentlyWorking;

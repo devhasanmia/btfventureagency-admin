@@ -5,6 +5,10 @@ import ContactMessages from "../pages/Message";
 import Messages from "../pages/Message";
 import Teams from "../pages/Teams";
 import AddTeam from "../pages/AddTeams";
+import OurServices from "../pages/OurServices";
+import RecentlyWorking from "../pages/RecentlyWorking";
+import Partnership from "../pages/Partnership";
+import Blog from "../pages/Blog";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,22 @@ const router = createBrowserRouter([
         {
           path: "add-teams",
           element: <AddTeam/>
+        },
+        {
+          path:"services",
+          element: <OurServices/>
+        },
+        {
+          path:"recently-working",
+          element: <RecentlyWorking/>
+        },
+        {
+          path: "partnership",
+          element: <Partnership/>
+        },
+        {
+          path: "blogs",
+          element: <Blog/>
         }
     ]
   },
