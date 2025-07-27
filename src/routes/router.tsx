@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "../components/layout/AdminLayout";
 import Home from "../pages/Home";
-import ContactMessages from "../pages/Message";
 import Messages from "../pages/Message";
 import Teams from "../pages/Teams";
 import AddTeam from "../pages/AddTeams";
