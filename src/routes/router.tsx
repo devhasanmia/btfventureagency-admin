@@ -8,6 +8,8 @@ import OurServices from "../pages/OurServices";
 import RecentlyWorking from "../pages/RecentlyWorking";
 import Partnership from "../pages/Partnership";
 import Blog from "../pages/Blog";
+import AddService from "../pages/AddService";
+import AddProject from "../pages/AddProject";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
         {
           path:"services",
           element: <OurServices/>
+        },
+        {
+          path: "add-service",
+          element: <AddService/>
+        },
+        {
+          path: "/add-project",
+          element: <AddProject/>
         },
         {
           path:"recently-working",

@@ -1,36 +1,27 @@
-import { useState } from "react";
-import { FiPlus, FiTrash2, FiEdit } from "react-icons/fi";
+import { FiPlus, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router";
+import { useDeleteServiceByIdMutation, useGetServicesQuery } from "../redux/api/ourservice/ourservice";
+import { toast } from "sonner";
 
-const initialServices = [
-  {
-    id: 1,
-    name: "Influencer Marketing",
-    link: "https://example.com/influencer-marketing",
-  },
-  {
-    id: 2,
-    name: "Crypto Fundraising",
-    link: "https://example.com/crypto-fundraising",
-  },
-  {
-    id: 3,
-    name: "Blockchain Consulting",
-    link: "",
-  },
-];
 
 const OurServices = () => {
-  const [services, setServices] = useState(initialServices);
+  interface Iservice {
+    _id: string
+    name: string
+    link?: string
+    createdAt: string
+    updatedAt: string
+    __v: number
+  }
 
-  const handleEdit = (id: number) => {
-    alert(`Edit service with ID: ${id}`);
-    // Edit লজিক এখানে যোগ করতে পারো
-  };
-
-  const handleDelete = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this service?")) {
-      setServices((prev) => prev.filter((service) => service.id !== id));
+  const { data: services } = useGetServicesQuery("")
+  const [deleteService] = useDeleteServiceByIdMutation()
+  const handleDelete = async (id: string) => {
+    try {
+      const result = await deleteService(id).unwrap();
+      toast.success(result?.message)
+    } catch (error: any) {
+      toast.warning(error?.data?.message);
     }
   };
 
@@ -58,15 +49,15 @@ const OurServices = () => {
             </tr>
           </thead>
           <tbody>
-            {services.map((service, index) => (
+            {services?.data?.map((service: Iservice, index: string) => (
               <tr
-                key={service.id}
+                key={service._id}
                 className="border-t hover:bg-gray-50"
               >
                 <td className="p-4 font-medium">{index + 1}</td>
                 <td className="p-4 font-semibold">{service.name}</td>
                 <td className="p-4 text-blue-600">
-                  {service.link ? (
+                  {service?.link ? (
                     <a
                       href={service.link}
                       target="_blank"
@@ -82,15 +73,15 @@ const OurServices = () => {
                   )}
                 </td>
                 <td className="p-4 flex gap-2">
-                  <button
+                  {/* <button
                     onClick={() => handleEdit(service.id)}
                     className="flex items-center gap-1 px-3 py-1.5 bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-md text-sm font-medium transition"
                   >
                     <FiEdit />
                     Edit
-                  </button>
+                  </button> */}
                   <button
-                    onClick={() => handleDelete(service.id)}
+                    onClick={() => handleDelete(service._id)}
                     className="flex items-center gap-1 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"
                   >
                     <FiTrash2 />
@@ -102,7 +93,7 @@ const OurServices = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   );
 };
 
