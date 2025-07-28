@@ -1,5 +1,5 @@
 import React from "react";
-import { FiEdit, FiTrash2, FiPlus, FiRefreshCw } from "react-icons/fi";
+import {  FiTrash2, FiPlus, FiRefreshCw } from "react-icons/fi";
 import { Link } from "react-router";
 import { toast } from "sonner";
 import {

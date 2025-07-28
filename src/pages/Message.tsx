@@ -1,25 +1,10 @@
 import { FiMail } from "react-icons/fi";
+import { useGetAllMessageQuery } from "../redux/api/contact/contact";
 
-const messages = [
-  {
-    name: "Hasan Mia",
-    email: "hasan@example.com",
-    subject: "Web3 fundraising help",
-    message:
-      "I have a project that needs investor connections and CEX listing.",
-    interest: "Fund Raising",
-    projectSocial: "https://twitter.com/hasan_mia",
-  },
-  {
-    name: "Rahim Uddin",
-    email: "rahim@example.com",
-    subject: "Marketing support",
-    message: "Looking for influencer marketing services for our token launch.",
-    interest: "Marketing",
-  },
-];
+
 
 const Messages = () => {
+  const { data: messages } = useGetAllMessageQuery("")
   return (
     <div className="p-10">
       <h1 className="flex items-center gap-4 text-4xl font-extrabold text-indigo-700 mb-12 drop-shadow-sm">
@@ -28,7 +13,7 @@ const Messages = () => {
       </h1>
 
       <div className="space-y-8 max-w-3xl mx-auto">
-        {messages.map((msg, i) => (
+        {messages?.data?.map((msg: any, i: any) => (
           <div
             key={i}
             className="bg-white rounded-3xl p-8 shadow-md hover:shadow-lg transition-shadow duration-400 border border-indigo-100"
@@ -46,9 +31,7 @@ const Messages = () => {
               </a>
             </div>
 
-            <p className="mt-4 italic text-indigo-600 border-l-4 border-indigo-300 pl-5 font-medium">
-              Subject: {msg.subject}
-            </p>
+           
 
             <p className="mt-3 font-semibold text-indigo-700">
               I&apos;m interested in:{" "}
