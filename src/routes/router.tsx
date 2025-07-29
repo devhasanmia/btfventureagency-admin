@@ -11,6 +11,7 @@ import AddService from "../pages/AddService";
 import AddProject from "../pages/AddProject";
 import AddPartnership from "../pages/AddPartnership";
 import Dashboard from "../pages/Dashboard";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
         }
     ]
   },
+  {
+    path: "/login",
+    element: <Login/>
+  }
 ]);
 
 export default router;
