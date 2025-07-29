@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import AdminLayout from "../components/layout/AdminLayout";
-import Home from "../pages/Home";
 import Messages from "../pages/Message";
 import Teams from "../pages/Teams";
 import AddTeam from "../pages/AddTeams";
@@ -10,6 +9,8 @@ import Partnership from "../pages/Partnership";
 import Blog from "../pages/Blog";
 import AddService from "../pages/AddService";
 import AddProject from "../pages/AddProject";
+import AddPartnership from "../pages/AddPartnership";
+import Dashboard from "../pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,11 @@ const router = createBrowserRouter([
     children: [
         {
             path: "",
-            element: <Home/>
+            element: <Dashboard/>
         },
         {
             path: "dashboard",
-            element: <Home/>
+            element: <Dashboard/>
         },
         {
             path: "messages",
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         {
           path: "partnership",
           element: <Partnership/>
+        },
+        {
+          path: "add-partner",
+          element: <AddPartnership/>
         },
         {
           path: "blogs",

@@ -1,1 +1,15 @@
 @import "tailwindcss";
+/* Recharts এর চার্টের ফোকাস বর্ডার সরানো */
+.recharts-wrapper :focus,
+.recharts-wrapper svg:focus,
+.recharts-wrapper div:focus,
+.recharts-wrapper g:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* যদি ট্যাব নেভিগেশন থেকে outline দরকার না হয় পুরো ওয়েবসাইটে */
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
