@@ -18,13 +18,14 @@ import {
   AreaChart,
   Area,
 } from "recharts";
-
+import { MdMenuBook } from "react-icons/md";
 const icons = [
   <FiBriefcase size={28} className="text-indigo-500" />,
   <FiUsers size={28} className="text-green-500" />,
   <FiPackage size={28} className="text-yellow-500" />,
   <FiActivity size={28} className="text-red-500" />,
   <FiMail size={28} className="text-purple-500" />,
+  <MdMenuBook size={28} className="text-purple-500" />,
 ];
 
 const Dashboard = () => {
@@ -38,6 +39,7 @@ const Dashboard = () => {
     { label: "Total Services", value: counts?.totalServices || 0 },
     { label: "Recently Worked", value: counts?.totalRecentlyWorking || 0 },
     { label: "Total Contacts", value: counts?.totalcontact || 0 },
+    { label: "Total Blog", value: counts?.totalBlog || 0 },
   ];
 
   const chartData = cards.map((item) => ({

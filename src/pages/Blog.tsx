@@ -1,35 +1,21 @@
-import React, { useState } from "react";
-import { FiEdit, FiTrash2, FiPlus } from "react-icons/fi";
+import { FiTrash2, FiPlus } from "react-icons/fi";
 import { Link } from "react-router";
-
-const initialBlogs = [
-  {
-    id: 1,
-    title: "Understanding Blockchain",
-    description: "Blockchain is a distributed ledger technology that allows data to be stored globally on thousands of servers...",
-    picture: "https://via.placeholder.com/100x60",
-  },
-  {
-    id: 2,
-    title: "Introduction to Web3",
-    description: "Web3 represents the next generation of internet services powered by blockchain technology...",
-    picture: "https://via.placeholder.com/100x60",
-  },
-];
+import { useDeleteBlogByIdMutation, useGetAllBlogQuery } from "../redux/api/blog/blog";
+import { toast } from "sonner";
 
 const truncateText = (text: string, length = 40) =>
   text.length > length ? text.slice(0, length) + "..." : text;
 
 const Blog = () => {
-  const [blogs, setBlogs] = useState(initialBlogs);
+  const { data: blogs } = useGetAllBlogQuery("")
 
-  const handleEdit = (id: number) => {
-    alert(`Edit blog with ID: ${id}`);
-  };
-
-  const handleDelete = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this blog?")) {
-      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
+  const [deleteBlog] = useDeleteBlogByIdMutation()
+  const handleDelete = async (id: number) => {
+    try {
+      const result = await deleteBlog(id).unwrap();
+      toast.success(result?.message)
+    } catch (error: any) {
+      toast.warning(error?.data?.message);
     }
   };
 
@@ -57,8 +43,8 @@ const Blog = () => {
             </tr>
           </thead>
           <tbody>
-            {blogs.map(({ id, title, description, picture }) => (
-              <tr key={id} className="border-t hover:bg-gray-50">
+            {blogs?.data?.map(({ _id, title, description, picture }: any) => (
+              <tr key={_id} className="border-t hover:bg-gray-50">
                 <td className="p-4">
                   <img
                     src={picture}
@@ -71,15 +57,15 @@ const Blog = () => {
                   {truncateText(description)}
                 </td>
                 <td className="p-4 flex gap-2">
-                  <button
-                    onClick={() => handleEdit(id)}
+                  {/* <button
+                    // onClick={() => handleEdit(id)}
                     className="flex items-center gap-1 px-3 py-1.5 bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-md text-sm font-medium transition"
                   >
                     <FiEdit />
                     Edit
-                  </button>
+                  </button> */}
                   <button
-                    onClick={() => handleDelete(id)}
+                    onClick={() => handleDelete(_id)}
                     className="flex items-center gap-1 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"
                   >
                     <FiTrash2 />
@@ -88,7 +74,7 @@ const Blog = () => {
                 </td>
               </tr>
             ))}
-            {blogs.length === 0 && (
+            {blogs?.data?.length === 0 && (
               <tr>
                 <td colSpan={4} className="text-center py-6 text-gray-500">
                   No blogs found.

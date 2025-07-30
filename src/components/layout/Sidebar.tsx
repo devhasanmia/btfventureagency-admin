@@ -10,6 +10,7 @@ import {
   FiFileText,
   FiMail,
 } from "react-icons/fi";
+import { IoIosLink } from "react-icons/io";
 import { Link } from "react-router";
 
 type NavItem = {
@@ -30,6 +31,9 @@ const navItems: NavItem[] = [
   { name: "Recently Working", icon: <FiClock />, path: "/recently-working" },
   { name: "Blogs", icon: <FiFileText />, path: "/blogs" },
   { name: "Messages", icon: <FiMail />, path: "/messages" },
+  {
+    name: "Social Link", icon: <IoIosLink/>, path: "/social-link"
+  }
 ];
 
 type SidebarProps = {

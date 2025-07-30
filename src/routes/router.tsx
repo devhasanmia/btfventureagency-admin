@@ -12,6 +12,8 @@ import AddProject from "../pages/AddProject";
 import AddPartnership from "../pages/AddPartnership";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
+import AddBlog from "../pages/AddBlog";
+import SocialLink from "../pages/SocialLink";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
           element: <AddService/>
         },
         {
-          path: "/add-project",
+          path: "add-project",
           element: <AddProject/>
         },
         {
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
         {
           path: "blogs",
           element: <Blog/>
+        },
+        {
+          path: "add-blog",
+          element: <AddBlog/>
+        },
+        {
+          path: "social-link",
+          element: <SocialLink/>
         }
     ]
   },
