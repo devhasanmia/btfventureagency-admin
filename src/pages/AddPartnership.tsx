@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { FiArrowLeft, FiSave } from "react-icons/fi";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { useCreateRecentlyWorkingMutation } from "../redux/api/recently-working/recently-working";
 import { useCreatePartnershipMutation } from "../redux/api/partnership/partnership";
 
 type PartnershipFormInputs = {
