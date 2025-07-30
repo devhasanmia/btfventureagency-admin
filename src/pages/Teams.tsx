@@ -173,14 +173,6 @@ const Team: React.FC = () => {
                 </td>
                 <td className="p-4">
                   <div className="flex flex-col gap-2">
-                    <Link
-                      to={`/edit-teams/${member._id}`}
-                      className="flex items-center justify-center gap-2 px-3 py-1.5 bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-md text-sm font-medium transition"
-                    >
-                      <FiEdit />
-                      Edit
-                    </Link>
-
                     <button
                       onClick={() => handleTeamDelete(member._id)}
                       className="flex items-center justify-center gap-2 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"

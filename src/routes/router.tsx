@@ -15,6 +15,7 @@ import Login from "../pages/Login";
 import AddBlog from "../pages/AddBlog";
 import SocialLink from "../pages/SocialLink";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -80,11 +81,16 @@ const router = createBrowserRouter([
         path: "social-link",
         element: <SocialLink />
       }
+     
     ]
   },
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "*",
+    element: <NotFound/>
   }
 ]);
 

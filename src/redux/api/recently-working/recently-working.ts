@@ -27,7 +27,7 @@ export const recentlyWorking = baseApi.injectEndpoints({
         updateRecentlyWorking: builder.mutation({
             query: ({ id, status }) => ({
                 url: `/recently-working/${id}`,
-                method: "PATCH",
+                method: "PUT",
                 body: { status }
             }),
             invalidatesTags: ["recently-working"]
