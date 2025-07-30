@@ -14,73 +14,77 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import AddBlog from "../pages/AddBlog";
 import SocialLink from "../pages/SocialLink";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AdminLayout/>,
+    element:
+      (
+        <ProtectedRoute>{(<AdminLayout />)}</ProtectedRoute>
+      ),
     children: [
-        {
-            path: "",
-            element: <Dashboard/>
-        },
-        {
-            path: "dashboard",
-            element: <Dashboard/>
-        },
-        {
-            path: "messages",
-            element: <Messages/>
-        },
-        {
-          path: "teams",
-          element: <Teams/>
-        },
-        {
-          path: "add-teams",
-          element: <AddTeam/>
-        },
-        {
-          path:"services",
-          element: <OurServices/>
-        },
-        {
-          path: "add-service",
-          element: <AddService/>
-        },
-        {
-          path: "add-project",
-          element: <AddProject/>
-        },
-        {
-          path:"recently-working",
-          element: <RecentlyWorking/>
-        },
-        {
-          path: "partnership",
-          element: <Partnership/>
-        },
-        {
-          path: "add-partner",
-          element: <AddPartnership/>
-        },
-        {
-          path: "blogs",
-          element: <Blog/>
-        },
-        {
-          path: "add-blog",
-          element: <AddBlog/>
-        },
-        {
-          path: "social-link",
-          element: <SocialLink/>
-        }
+      {
+        path: "",
+        element: <Dashboard />
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "messages",
+        element: <Messages />
+      },
+      {
+        path: "teams",
+        element: <Teams />
+      },
+      {
+        path: "add-teams",
+        element: <AddTeam />
+      },
+      {
+        path: "services",
+        element: <OurServices />
+      },
+      {
+        path: "add-service",
+        element: <AddService />
+      },
+      {
+        path: "add-project",
+        element: <AddProject />
+      },
+      {
+        path: "recently-working",
+        element: <RecentlyWorking />
+      },
+      {
+        path: "partnership",
+        element: <Partnership />
+      },
+      {
+        path: "add-partner",
+        element: <AddPartnership />
+      },
+      {
+        path: "blogs",
+        element: <Blog />
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />
+      },
+      {
+        path: "social-link",
+        element: <SocialLink />
+      }
     ]
   },
   {
     path: "/login",
-    element: <Login/>
+    element: <Login />
   }
 ]);
 

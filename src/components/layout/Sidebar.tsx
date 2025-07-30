@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import {
   FiX,
   FiLogOut,
@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import { IoIosLink } from "react-icons/io";
 import { Link } from "react-router";
+import { useAppSelector } from "../../redux/hooks";
 
 type NavItem = {
   name: string;
@@ -42,6 +43,8 @@ type SidebarProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
+  const user = useAppSelector((state)=> state.auth.user)
+
   return (
     <aside 
       className={`fixed md:relative z-40 h-full w-72 bg-white shadow-md transform transition-transform duration-300 ease-in-out ${
@@ -80,11 +83,11 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
       {/* User Info */}
       <div className="p-5 flex items-center gap-4">
         <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">
-          U
+          <img src={user?.picture} alt="" />
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-green-700">Username</p>
-          <p className="text-sm text-gray-500">Admin</p>
+          <p className="font-semibold text-green-700">Admin</p>
+          <p className="text-sm text-gray-500">{user?.name}</p>
         </div>
         <button
           className="text-red-500 hover:text-red-700 transition"
