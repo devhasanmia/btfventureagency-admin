@@ -1,5 +1,5 @@
 import React from "react";
-import { FiTrash2, FiPlus } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiEdit } from "react-icons/fi";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -39,10 +39,10 @@ const Team: React.FC = () => {
   const [teamDelete] = useDeleteTeamByIdMutation();
   const handleTeamDelete = async (id: string) => {
     try {
-    const result = await teamDelete(id).unwrap();
-    toast.success(result?.message)
-    } catch (error:any) {
-       toast.warning(error?.data?.message);
+      const result = await teamDelete(id).unwrap();
+      toast.success(result?.message)
+    } catch (error: any) {
+      toast.warning(error?.data?.message);
     }
   };
   return (
@@ -172,13 +172,23 @@ const Team: React.FC = () => {
                   )}
                 </td>
                 <td className="p-4">
-                  <button
-                    onClick={() => handleTeamDelete(member._id)}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"
-                  >
-                    <FiTrash2 />
-                    Delete
-                  </button>
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      to={`/edit-teams/${member._id}`}
+                      className="flex items-center justify-center gap-2 px-3 py-1.5 bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-md text-sm font-medium transition"
+                    >
+                      <FiEdit />
+                      Edit
+                    </Link>
+
+                    <button
+                      onClick={() => handleTeamDelete(member._id)}
+                      className="flex items-center justify-center gap-2 px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-md text-sm font-medium transition"
+                    >
+                      <FiTrash2 />
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
