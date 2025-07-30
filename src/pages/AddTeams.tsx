@@ -151,8 +151,8 @@ const AddTeam = () => {
             id="bio"
             {...register("bio", {
               maxLength: {
-                value: 150,
-                message: "Bio cannot exceed 150 characters",
+                value: 300,
+                message: "Bio cannot exceed 300 characters",
               },
             })}
             rows={4}

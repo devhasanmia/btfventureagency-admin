@@ -4,7 +4,7 @@ import type { RootState } from "../store";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1", prepareHeaders: (headers, { getState }) => {
+    baseUrl: "https://btfventureagency-server.vercel.app/api/v1", prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState;
       const token = state.auth?.token
       if (token) {
