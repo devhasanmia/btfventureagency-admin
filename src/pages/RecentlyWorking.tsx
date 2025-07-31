@@ -19,11 +19,6 @@ interface IProject {
   status: "Live" | "Upcoming";
 }
 
-// Utility
-const truncateText = (text: string, maxLength = 40) => {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + "...";
-};
 
 const RecentlyWorking: React.FC = () => {
   const { data: projects, isLoading } = useGetRecentlyWorkingQuery("");
@@ -88,7 +83,7 @@ const RecentlyWorking: React.FC = () => {
                     />
                   </td>
                   <td className="p-4 font-semibold">{project.name}</td>
-                  <td className="p-4 text-gray-600">{truncateText(project.description)}</td>
+                  <td className="p-4 text-gray-600">{project.description}</td>
                   <td className="p-4">{formatPrettyDate(project.launch)}</td>
                   <td className="p-4">
                     <button

@@ -145,7 +145,6 @@ const AddProject: React.FC = () => {
                             id="description"
                             {...register("description", {
                                 required: "Description is required",
-                                maxLength: { value: 200, message: "Maximum 200 characters allowed" },
                             })}
                             placeholder="Enter short description (max 100 characters)"
                             className={`w-full border rounded-lg px-4 py-2 ${errors.description ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-blue-400`}
